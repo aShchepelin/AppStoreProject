@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
+//  ShopViewController.swift
 //  AppStoreHW
 //
 //  Created by Александр Андреевич Щепелин on 06.10.2022.
 //
 
 import UIKit
-/// Стартовый экран приложения
-final class ViewController: UIViewController {
+/// экран магазина?
+final class ShopViewController: UIViewController {
     
     // MARK: - IBOutlets
     // MARK: - Visual Components
@@ -23,7 +23,7 @@ final class ViewController: UIViewController {
     // MARK: - IBActions
     // MARK: - Private methods
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     // MARK: - Types
