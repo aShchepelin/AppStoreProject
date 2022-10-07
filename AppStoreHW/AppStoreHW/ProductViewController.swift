@@ -6,10 +6,10 @@
 //
 
 import UIKit
+
 /// Экран с выбранным товаром
 final class ProductViewController: UIViewController {
     
-    // MARK: - IBOutlets
     // MARK: - Visual Components
     
     private let productInfoLabel: UILabel = {
@@ -30,15 +30,13 @@ final class ProductViewController: UIViewController {
     // MARK: - Public properties
     var productInfo = ""
     var productImage = ""
-    // MARK: - Private properties
-    // MARK: - Initializers
+  
     // MARK: - Lifeсycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    // MARK: - Public methods
-    // MARK: - IBActions
+  
     // MARK: - Private methods
     private func setupUI() {
         view.backgroundColor = .systemBackground
@@ -47,8 +45,4 @@ final class ProductViewController: UIViewController {
         view.addSubview(productImageView)
         productImageView.image = UIImage(named: productImage)
     }
-    
-    // MARK: - Types
-    // MARK: - Constants
-    // MARK: - Extension
 }

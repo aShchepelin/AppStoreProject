@@ -15,27 +15,26 @@ final class MainTabBarController: UITabBarController {
         static let clientItemText = "Для вас"
         static let searchItemText = "Поиск"
         static let basketItemText = "Корзина"
-        static let laptopImage = "laptop"
     }
     // MARK: - Private properties
     private let shopViewController = ShopViewController()
     private let shopTabBarItem = UITabBarItem(title: Constants.shopItemText,
-                                              image: UIImage(systemName: Images.buyImage),
+                                              image: UIImage(systemName: Images.buyImageName),
                                               tag: 0)
     
     private let clientViewController = ClientViewController()
     private let clientTabBarItem = UITabBarItem(title: Constants.clientItemText,
-                                                image: UIImage(systemName: Images.clientImage),
+                                                image: UIImage(systemName: Images.clientImageName),
                                                 tag: 1)
     
     private let searchViewController = SearchViewController()
     private let searchTabBarItem = UITabBarItem(title: Constants.searchItemText,
-                                                image: UIImage(systemName: Images.glassImage),
+                                                image: UIImage(systemName: Images.glassImageName),
                                                 tag: 2)
     
     private let basketViewController = BasketViewController()
     private let basketTabBarItem = UITabBarItem(title: Constants.basketItemText,
-                                                image: UIImage(systemName: Images.basketImage),
+                                                image: UIImage(systemName: Images.basketImageName),
                                                 tag: 3)
     
     // MARK: - Lifecycle

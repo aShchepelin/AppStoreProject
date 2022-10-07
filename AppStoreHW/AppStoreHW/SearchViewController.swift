@@ -6,7 +6,8 @@
 //
 
 import UIKit
-/// экран с поиском и выбором товаров
+
+/// Экран с поиском и выбором товаров
 final class SearchViewController: UIViewController {
     
     // MARK: - Enum
@@ -130,7 +131,7 @@ final class SearchViewController: UIViewController {
     
     private let glassForAirPodsButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImage), for: .normal)
+        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
         button.tintColor = .gray
         button.contentMode = .scaleAspectFit
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
@@ -148,7 +149,7 @@ final class SearchViewController: UIViewController {
     
     private let glassForAppleCareButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImage), for: .normal)
+        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
         button.tintColor = .gray
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
         return button
@@ -165,7 +166,7 @@ final class SearchViewController: UIViewController {
     
     private let glassBeatsButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImage), for: .normal)
+        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
         button.tintColor = .gray
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
         return button
@@ -182,7 +183,7 @@ final class SearchViewController: UIViewController {
     
     private let glassIPhoneButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImage), for: .normal)
+        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
         button.tintColor = .gray
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
         return button
@@ -215,18 +216,14 @@ final class SearchViewController: UIViewController {
         view.frame = CGRect(x: 20, y: 670, width: 350, height: 50)
         return view
     }()
-    
-    // MARK: - Public properties
-    // MARK: - Private properties
-    // MARK: - Initializers
+
     // MARK: - Lifeсycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-    // MARK: - Public methods
-    // MARK: - IBActions
+    
     // MARK: - Private methods
     
     private func setupUI() {
@@ -251,7 +248,7 @@ final class SearchViewController: UIViewController {
     
     private func createBrownCaseView() {
         let brownCaseImageView = UIImageView()
-        let brownCaseImage = UIImage(named: Images.brownCaseImage)
+        let brownCaseImage = UIImage(named: Images.brownCaseImageName)
         brownCaseImageView.contentMode = .scaleAspectFit
         view.addSubview(brownCaseView)
         brownCaseImageView.image = brownCaseImage
@@ -264,7 +261,7 @@ final class SearchViewController: UIViewController {
     
     private func createBlackCaseView() {
         let blackCaseImageView = UIImageView()
-        let blackCaseImage = UIImage(named: Images.blackCaseImage)
+        let blackCaseImage = UIImage(named: Images.blackCaseImageName)
         blackCaseImageView.contentMode = .scaleAspectFit
         view.addSubview(blackCaseView)
         blackCaseImageView.image = blackCaseImage
@@ -277,7 +274,7 @@ final class SearchViewController: UIViewController {
     
     private func createWatchbandView() {
         let watchbandImageView = UIImageView()
-        let watchbandImage = UIImage(named: Images.watchbandImage)
+        let watchbandImage = UIImage(named: Images.watchbandImageName)
         watchbandImageView.contentMode = .scaleAspectFit
         view.addSubview(watchbandView)
         watchbandImageView.image = watchbandImage
@@ -317,19 +314,16 @@ final class SearchViewController: UIViewController {
         switch param.view?.tag {
         case 1:
             productViewController.productInfo = Constants.blackCaseLabelText
-            productViewController.productImage = Images.blackCaseImage
+            productViewController.productImage = Images.blackCaseImageName
         case 2:
             productViewController.productInfo = Constants.watchbandLabelText
-            productViewController.productImage = Images.watchbandImage
+            productViewController.productImage = Images.watchbandImageName
         case 3:
             productViewController.productInfo = Constants.brownCaseLabelText
-            productViewController.productImage = Images.brownCaseImage
+            productViewController.productImage = Images.brownCaseImageName
         default:
             break
         }
         navigationController?.pushViewController(productViewController, animated: true)
     }
-    // MARK: - Types
-    // MARK: - Constants
-    // MARK: - Extension
 }
