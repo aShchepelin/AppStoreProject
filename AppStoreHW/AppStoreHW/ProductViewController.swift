@@ -139,6 +139,17 @@ final class ProductViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        customNavigationBar(largeType: false, color: .secondarySystemBackground)
+        createBarButtonItems()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        customNavigationBar(largeType: true, color: .clear)
+    }
+    
     // MARK: - Private methods
     private func setupUI() {
         view.backgroundColor = .systemBackground
@@ -162,7 +173,6 @@ final class ProductViewController: UIViewController {
         
         createScrollView()
         multiplyColorStringAction()
-        createBarButtonItems()
         gradientColorGray()
         gradientColorLightGray()
         for imageName in productImages {
@@ -217,10 +227,24 @@ final class ProductViewController: UIViewController {
     }
     
     private func addNewImageView(imageName: String) {
-        var imageViewRect = CGRect(x: 0, y: 0, width: view.bounds.width, height: 200)
+        var imageViewRect = CGRect(x: 0, y: 0, width: view.bounds.width, height: 190)
         imageViewRect.origin.x = imageViewRect.size.width * CGFloat(productScrollView.subviews.count)
         let imageView = newImageViewWithImage(paramImage: imageName, paramFrame: imageViewRect)
         productScrollView.addSubview(imageView)
+    }
+    
+    private func customNavigationBar(largeType: Bool, color: UIColor) {
+        let apperance = UINavigationBarAppearance()
+        if largeType == true {
+            apperance.configureWithTransparentBackground()
+        } else {
+            apperance.configureWithOpaqueBackground()
+        }
+        apperance.backgroundColor = color
+        navigationController?.navigationBar.standardAppearance = apperance
+        navigationController?.navigationBar.scrollEdgeAppearance =
+        navigationController?.navigationBar.standardAppearance
+        navigationController?.navigationBar.prefersLargeTitles = largeType
     }
     
     private func newImageViewWithImage(paramImage: String, paramFrame: CGRect) -> UIImageView {
