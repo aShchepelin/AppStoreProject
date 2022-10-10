@@ -335,7 +335,6 @@ final class SearchViewController: UIViewController {
         productView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         viewFrame += 177
         productScrollView.addSubview(productView)
-        print(tag)
     }
    
     private func createAirPodsSearchView() {
