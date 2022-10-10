@@ -19,11 +19,16 @@ final class SearchViewController: UIViewController {
         static let requestOptionsLabelText = "Варианты запросов"
         static let blackCaseLabelText = "Чехол Incase Flat для MacBook Pro 16 дюймов"
         static let watchbandLabelText = "Спортивный ремешок Black Unity"
-        static let brownCaseLabelText = "Кожанный чехол для MacBook Pro 16 дюймов, коричневый"
+        static let brownCaseLabelText = "Кожаный чехол для MacBook Pro 16 дюймов, коричневый"
+        static let iPhoneCaseLabelText = "Iphone 12 pro какого-то цвета"
         static let airPodsLabelText = "AirPods"
         static let appleCareLabelText = "AppleCare"
         static let beatsLabelText = "Beats"
         static let iphoneLabelText = "Сравнение модели iPhone"
+        static let blackCaseCost = "3 990.00 руб"
+        static let brownCaseCost = "4 990.00 руб"
+        static let watchbandCost = "1 200.00 руб"
+        static let iPhoneCost = "89 900.00 руб"
     }
     // MARK: - Visual Components
     
@@ -32,7 +37,7 @@ final class SearchViewController: UIViewController {
         label.text = Constants.searchLabelText
         label.textColor = .label
         label.font = .boldSystemFont(ofSize: 30)
-        label.frame = CGRect(x: 20, y: 100, width: 100, height: 50)
+        label.frame = CGRect(x: 20, y: 100, width: 90, height: 50)
         return label
     }()
     
@@ -47,7 +52,7 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.recentlyViewedLabelText
         label.textColor = .label
-        label.font = .systemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: 20)
         label.frame = CGRect(x: 20, y: 200, width: 300, height: 50)
         return label
     }()
@@ -56,14 +61,14 @@ final class SearchViewController: UIViewController {
         let button = UIButton()
         button.setTitle(Constants.cleanButtonTitleText, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-        button.frame = CGRect(x: 300, y: 211, width: 90, height: 30)
+        button.frame = CGRect(x: 280, y: 211, width: 90, height: 30)
         return button
     }()
     
     private let blackCaseView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray6
-        view.frame = CGRect(x: 20, y: 250, width: 150, height: 200)
+        view.frame = CGRect(x: 20, y: 0, width: 150, height: 200)
         view.layer.cornerRadius = 15
         return view
     }()
@@ -72,15 +77,15 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.blackCaseLabelText
         label.numberOfLines = 3
-        label.font = .systemFont(ofSize: 15)
+        label.font = .boldSystemFont(ofSize: 13)
         label.frame = CGRect(x: 13, y: 120, width: 130, height: 80)
         return label
     }()
     
     private let brownCaseView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray6
-        view.frame = CGRect(x: 360, y: 250, width: 150, height: 200)
+        view.backgroundColor = .secondarySystemBackground
+        view.frame = CGRect(x: 360, y: 0, width: 150, height: 200)
         view.layer.cornerRadius = 15
         return view
     }()
@@ -89,24 +94,41 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.brownCaseLabelText
         label.numberOfLines = 3
-        label.font = .systemFont(ofSize: 15)
+        label.font = .boldSystemFont(ofSize: 13)
         label.frame = CGRect(x: 13, y: 120, width: 130, height: 80)
         return label
     }()
     
     private let watchbandView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray6
-        view.frame = CGRect(x: 190, y: 250, width: 150, height: 200)
+        view.backgroundColor = .secondarySystemBackground
+        view.frame = CGRect(x: 190, y: 0, width: 150, height: 200)
         view.layer.cornerRadius = 15
         return view
+    }()
+    
+    private let iPhoneCaseView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .secondarySystemBackground
+        view.frame = CGRect(x: 530, y: 0, width: 150, height: 200)
+        view.layer.cornerRadius = 15
+        return view
+    }()
+    
+    private let iPhoneCaseLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constants.iPhoneCaseLabelText
+        label.numberOfLines = 3
+        label.font = .boldSystemFont(ofSize: 13)
+        label.frame = CGRect(x: 13, y: 120, width: 130, height: 80)
+        return label
     }()
     
     private let watchbandLabel: UILabel = {
         let label = UILabel()
         label.text = Constants.watchbandLabelText
         label.numberOfLines = 3
-        label.font = .systemFont(ofSize: 15)
+        label.font = .boldSystemFont(ofSize: 13)
         label.frame = CGRect(x: 13, y: 120, width: 130, height: 80)
         return label
     }()
@@ -115,7 +137,7 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.requestOptionsLabelText
         label.textColor = .label
-        label.font = .systemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: 24)
         label.frame = CGRect(x: 20, y: 470, width: 300, height: 50)
         return label
     }()
@@ -216,7 +238,32 @@ final class SearchViewController: UIViewController {
         view.frame = CGRect(x: 20, y: 670, width: 350, height: 50)
         return view
     }()
-
+    
+    private lazy var productScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .systemBackground
+        scrollView.frame = CGRect(x: 0, y: 250, width: self.view.bounds.width, height: 210)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: 210)
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+    
+    // MARK: - Private properties
+    private var viewFrame = 13
+    private var tag = 0
+    var product = [Product(name: "Чехол Incase Flat для MacBook Pro 16 дюймов",
+                          imageNames: ["caseBlack", "caseBlack2", "caseBlack3"],
+                          cost: "3 990.00 руб"),
+                   Product(name: "Кожаный чехол для MacBook Pro 16 дюймов, коричневый",
+                           imageNames: ["caseBrown", "caseBrown2", "caseBrown3"],
+                           cost: "4 990.00 руб"),
+                   Product(name: "Спортивный ремешок Black Unity",
+                           imageNames: ["4", "clock2", "clock3"],
+                           cost: "1 200.00 руб"),
+                   Product(name: "Iphone 12 pro какого-то цвета",
+                           imageNames: ["iphone", "iphone2", "iphone3"],
+                           cost: "89 900.00 руб") ]
+    
     // MARK: - Lifeсycle
     
     override func viewDidLoad() {
@@ -228,7 +275,7 @@ final class SearchViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        view.addSubview(searchLabel)
+        searchBar.searchBarStyle = .minimal
         view.addSubview(searchBar)
         view.addSubview(recentlyViewedLabel)
         view.addSubview(cleanButton)
@@ -237,54 +284,59 @@ final class SearchViewController: UIViewController {
         view.addSubview(appleCareSearchView)
         view.addSubview(beatsSearchView)
         view.addSubview(iPhoneSearchView)
-        createWatchbandView()
-        createBlackCaseView()
-        createBrownCaseView()
+        view.addSubview(productScrollView)
         createAirPodsSearchView()
         createAppleCareSearchView()
         createBeatsSearchView()
         createIphoneSearchView()
+        createScroolView()
+        addView()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = Constants.searchLabelText
     }
     
-    private func createBrownCaseView() {
-        let brownCaseImageView = UIImageView()
-        let brownCaseImage = UIImage(named: Images.brownCaseImageName)
-        brownCaseImageView.contentMode = .scaleAspectFit
-        view.addSubview(brownCaseView)
-        brownCaseImageView.image = brownCaseImage
-        brownCaseImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
-        brownCaseView.addSubview(brownCaseImageView)
-        brownCaseView.addSubview(brownCaseLabel)
-        brownCaseView.tag = 3
-        brownCaseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    private func createScroolView() {
+        let scrollViewRect = CGRect(x: 0, y: 240, width: view.bounds.width + 300, height: 210)
+        productScrollView.contentSize = CGSize(width: scrollViewRect.size.width,
+                                               height: 200)
+        productScrollView.contentMode = .scaleAspectFit
+        view.addSubview(productScrollView)
     }
     
-    private func createBlackCaseView() {
-        let blackCaseImageView = UIImageView()
-        let blackCaseImage = UIImage(named: Images.blackCaseImageName)
-        blackCaseImageView.contentMode = .scaleAspectFit
-        view.addSubview(blackCaseView)
-        blackCaseImageView.image = blackCaseImage
-        blackCaseImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
-        blackCaseView.addSubview(blackCaseLabel)
-        blackCaseView.addSubview(blackCaseImageView)
-        blackCaseView.tag = 1
-        blackCaseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    private func addView() {
+        for item in product {
+            createProductView(image: item.imageNames.first ?? "", info: item.name, cost: item.cost, tag: tag)
+            tag += 1
+        }
     }
     
-    private func createWatchbandView() {
-        let watchbandImageView = UIImageView()
-        let watchbandImage = UIImage(named: Images.watchbandImageName)
-        watchbandImageView.contentMode = .scaleAspectFit
-        view.addSubview(watchbandView)
-        watchbandImageView.image = watchbandImage
-        watchbandImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
-        watchbandView.addSubview(watchbandImageView)
-        watchbandView.addSubview(watchbandLabel)
-        watchbandView.tag = 2
-        watchbandView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    private func createProductView(image: String, info: String, cost: String, tag: Int) {
+        let productView = UIView()
+        productView.backgroundColor = .secondarySystemBackground
+        productView.frame = CGRect(x: viewFrame, y: 0, width: 150, height: 200)
+        productView.layer.cornerRadius = 15
+        
+        let label = UILabel()
+        label.text = info
+        label.textColor = .label
+        label.numberOfLines = 3
+        label.font = .boldSystemFont(ofSize: 13)
+        label.frame = CGRect(x: 13, y: 120, width: 130, height: 80)
+        
+        let productImageView = UIImageView()
+        let productImage = UIImage(named: image)
+        productImageView.contentMode = .scaleAspectFit
+        productImageView.image = productImage
+        productImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
+        
+        productView.addSubview(productImageView)
+        productView.addSubview(label)
+        productView.tag = tag
+        productView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        viewFrame += 177
+        productScrollView.addSubview(productView)
     }
-    
+   
     private func createAirPodsSearchView() {
         airPodsSearchView.addSubview(airPodsLabel)
         airPodsSearchView.addSubview(glassForAirPodsButton)
@@ -311,19 +363,9 @@ final class SearchViewController: UIViewController {
     
     @objc private func handleTap(param: UIGestureRecognizer) {
         let productViewController = ProductViewController()
-        switch param.view?.tag {
-        case 1:
-            productViewController.productInfo = Constants.blackCaseLabelText
-            productViewController.productImage = Images.blackCaseImageName
-        case 2:
-            productViewController.productInfo = Constants.watchbandLabelText
-            productViewController.productImage = Images.watchbandImageName
-        case 3:
-            productViewController.productInfo = Constants.brownCaseLabelText
-            productViewController.productImage = Images.brownCaseImageName
-        default:
-            break
-        }
+        guard let tag = param.view?.tag else { return }
+        productViewController.product = product[tag]
+        
         navigationController?.pushViewController(productViewController, animated: true)
     }
 }

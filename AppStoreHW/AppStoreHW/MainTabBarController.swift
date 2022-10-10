@@ -15,6 +15,7 @@ final class MainTabBarController: UITabBarController {
         static let clientItemText = "Для вас"
         static let searchItemText = "Поиск"
         static let basketItemText = "Корзина"
+        static let searchLabelText = "Поиск"
     }
     // MARK: - Private properties
     private let shopViewController = ShopViewController()
@@ -51,6 +52,6 @@ final class MainTabBarController: UITabBarController {
         clientViewController.tabBarItem = clientTabBarItem
         searchViewController.tabBarItem = searchTabBarItem
         basketViewController.tabBarItem = basketTabBarItem
-        tabBar.backgroundColor = .systemBackground
+        tabBar.backgroundColor = .secondarySystemBackground
     }
 }
