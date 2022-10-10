@@ -128,9 +128,8 @@ final class ProductViewController: UIViewController {
     }()
     
     // MARK: - Public properties
-    var productInfo = ""
-    var productCost = ""
-    var productImages = [""]
+
+    var product: Product?
     var productScrollView = UIScrollView()
     
     // MARK: - Lifeсycle
@@ -153,9 +152,9 @@ final class ProductViewController: UIViewController {
     // MARK: - Private methods
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        productInfoLabel.text = productInfo
-        productCostLabel.text = productCost
-        productInfoSecondLabel.text = productInfo
+        productInfoLabel.text = product?.name
+        productCostLabel.text = product?.cost
+        productInfoSecondLabel.text = product?.name
         view.addSubview(productInfoLabel)
         view.addSubview(productInfoSecondLabel)
         view.addSubview(compatibilityLabel)
@@ -172,10 +171,11 @@ final class ProductViewController: UIViewController {
         lightGrayColorIsSelectedButton.isHidden = true
         
         createScrollView()
-        multiplyColorStringAction()
+        createMultiplyColorString()
         gradientColorGray()
         gradientColorLightGray()
-        for imageName in productImages {
+        guard let product = product else { return }
+        for imageName in product.imageNames {
             addNewImageView(imageName: imageName)
         }
     }
@@ -192,7 +192,7 @@ final class ProductViewController: UIViewController {
         navigationItem.rightBarButtonItems = [like, share]
     }
     
-    private func multiplyColorStringAction() {
+    private func createMultiplyColorString() {
             var myMultyMutableString = NSMutableAttributedString()
             var myMutableString = NSMutableAttributedString()
             
@@ -211,7 +211,7 @@ final class ProductViewController: UIViewController {
                                       value: UIColor.systemBlue,
                                       range: NSRange(location: 12, length: 24))
             
-            orderInfoLabel.attributedText = myMultyMutableString
+        orderInfoLabel.attributedText = myMultyMutableString
         compatibilityLabel.attributedText = myMutableString
             
     }

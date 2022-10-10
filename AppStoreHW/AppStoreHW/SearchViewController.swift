@@ -238,22 +238,32 @@ final class SearchViewController: UIViewController {
         view.frame = CGRect(x: 20, y: 670, width: 350, height: 50)
         return view
     }()
-    // MARK: - Private properties
+    
     private lazy var productScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = .systemBackground
         scrollView.frame = CGRect(x: 0, y: 250, width: self.view.bounds.width, height: 210)
         scrollView.contentSize = CGSize(width: view.bounds.width, height: 210)
+        scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
     
-//    private let gradient: CAGradientLayer = CAGradientLayer()
-//
-//      //  gradient.colors = [UIColor.blue.cgColor, UIColor.red.cgColor]
-//        gradient.locations = [0.0 , 1.0]
-//        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-//        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
-//
+    // MARK: - Private properties
+    private var viewFrame = 13
+    private var tag = 0
+    var product = [Product(name: "Чехол Incase Flat для MacBook Pro 16 дюймов",
+                          imageNames: ["caseBlack", "caseBlack2", "caseBlack3"],
+                          cost: "3 990.00 руб"),
+                   Product(name: "Кожаный чехол для MacBook Pro 16 дюймов, коричневый",
+                           imageNames: ["caseBrown", "caseBrown2", "caseBrown3"],
+                           cost: "4 990.00 руб"),
+                   Product(name: "Спортивный ремешок Black Unity",
+                           imageNames: ["4", "clock2", "clock3"],
+                           cost: "1 200.00 руб"),
+                   Product(name: "Iphone 12 pro какого-то цвета",
+                           imageNames: ["iphone", "iphone2", "iphone3"],
+                           cost: "89 900.00 руб") ]
+    
     // MARK: - Lifeсycle
     
     override func viewDidLoad() {
@@ -266,7 +276,6 @@ final class SearchViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         searchBar.searchBarStyle = .minimal
-//        view.addSubview(searchLabel)
         view.addSubview(searchBar)
         view.addSubview(recentlyViewedLabel)
         view.addSubview(cleanButton)
@@ -276,15 +285,12 @@ final class SearchViewController: UIViewController {
         view.addSubview(beatsSearchView)
         view.addSubview(iPhoneSearchView)
         view.addSubview(productScrollView)
-        createWatchbandView()
-        createBlackCaseView()
-        createBrownCaseView()
         createAirPodsSearchView()
         createAppleCareSearchView()
         createBeatsSearchView()
         createIphoneSearchView()
-        createIPhoneCaseView()
         createScroolView()
+        addView()
         navigationController?.navigationBar.prefersLargeTitles = true
         title = Constants.searchLabelText
     }
@@ -297,58 +303,41 @@ final class SearchViewController: UIViewController {
         view.addSubview(productScrollView)
     }
     
-    private func createBrownCaseView() {
-        let brownCaseImageView = UIImageView()
-        let brownCaseImage = UIImage(named: Images.brownCaseImageName)
-        brownCaseImageView.contentMode = .scaleAspectFit
-        productScrollView.addSubview(brownCaseView)
-        brownCaseImageView.image = brownCaseImage
-        brownCaseImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
-        brownCaseView.addSubview(brownCaseImageView)
-        brownCaseView.addSubview(brownCaseLabel)
-        brownCaseView.tag = 3
-        brownCaseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    private func addView() {
+        for item in product {
+            createProductView(image: item.imageNames.first ?? "", info: item.name, cost: item.cost, tag: tag)
+            tag += 1
+        }
     }
     
-    private func createIPhoneCaseView() {
-        let iPhoneImageView = UIImageView()
-        let iPhoneImage = UIImage(named: Images.iphoneImageName)
-        iPhoneImageView.contentMode = .scaleAspectFit
-        productScrollView.addSubview(iPhoneCaseView)
-        iPhoneImageView.image = iPhoneImage
-        iPhoneImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
-        iPhoneCaseView.addSubview(iPhoneCaseLabel)
-        iPhoneCaseView.addSubview(iPhoneImageView)
-        iPhoneCaseView.tag = 4
-        iPhoneCaseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    private func createProductView(image: String, info: String, cost: String, tag: Int) {
+        let productView = UIView()
+        productView.backgroundColor = .secondarySystemBackground
+        productView.frame = CGRect(x: viewFrame, y: 0, width: 150, height: 200)
+        productView.layer.cornerRadius = 15
+        
+        let label = UILabel()
+        label.text = info
+        label.textColor = .label
+        label.numberOfLines = 3
+        label.font = .boldSystemFont(ofSize: 13)
+        label.frame = CGRect(x: 13, y: 120, width: 130, height: 80)
+        
+        let productImageView = UIImageView()
+        let productImage = UIImage(named: image)
+        productImageView.contentMode = .scaleAspectFit
+        productImageView.image = productImage
+        productImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
+        
+        productView.addSubview(productImageView)
+        productView.addSubview(label)
+        productView.tag = tag
+        productView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        viewFrame += 177
+        productScrollView.addSubview(productView)
+        print(tag)
     }
-    
-    private func createBlackCaseView() {
-        let blackCaseImageView = UIImageView()
-        let blackCaseImage = UIImage(named: Images.blackCaseImageName)
-        blackCaseImageView.contentMode = .scaleAspectFit
-        productScrollView.addSubview(blackCaseView)
-        blackCaseImageView.image = blackCaseImage
-        blackCaseImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
-        blackCaseView.addSubview(blackCaseLabel)
-        blackCaseView.addSubview(blackCaseImageView)
-        blackCaseView.tag = 1
-        blackCaseView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
-    }
-    
-    private func createWatchbandView() {
-        let watchbandImageView = UIImageView()
-        let watchbandImage = UIImage(named: Images.watchbandImageName)
-        watchbandImageView.contentMode = .scaleAspectFit
-        productScrollView.addSubview(watchbandView)
-        watchbandImageView.image = watchbandImage
-        watchbandImageView.frame = CGRect(x: 23, y: 30, width: 100, height: 100)
-        watchbandView.addSubview(watchbandImageView)
-        watchbandView.addSubview(watchbandLabel)
-        watchbandView.tag = 2
-        watchbandView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
-    }
-    
+   
     private func createAirPodsSearchView() {
         airPodsSearchView.addSubview(airPodsLabel)
         airPodsSearchView.addSubview(glassForAirPodsButton)
@@ -375,26 +364,9 @@ final class SearchViewController: UIViewController {
     
     @objc private func handleTap(param: UIGestureRecognizer) {
         let productViewController = ProductViewController()
-        switch param.view?.tag {
-        case 1:
-            productViewController.productInfo = Constants.blackCaseLabelText
-            productViewController.productImages = Images.blackCaseImagesNames
-            productViewController.productCost = Constants.blackCaseCost
-        case 2:
-            productViewController.productInfo = Constants.watchbandLabelText
-            productViewController.productImages = Images.watchBandImagesNames
-            productViewController.productCost = Constants.watchbandCost
-        case 3:
-            productViewController.productInfo = Constants.brownCaseLabelText
-            productViewController.productImages = Images.brownCaseImagesNames
-            productViewController.productCost = Constants.brownCaseCost
-        case 4:
-            productViewController.productInfo = Constants.iPhoneCaseLabelText
-            productViewController.productImages = Images.iphoneImagesNames
-            productViewController.productCost = Constants.iPhoneCost
-        default:
-            break
-        }
+        guard let tag = param.view?.tag else { return }
+        productViewController.product = product[tag]
+        
         navigationController?.pushViewController(productViewController, animated: true)
     }
 }

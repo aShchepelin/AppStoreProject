@@ -2,16 +2,7 @@
   "images" : [
     {
       "filename" : "Screen-Shot-2021-02-01-at-7.03.56-AM-removebg-preview.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "idiom" : "universal"
     }
   ],
   "info" : {
