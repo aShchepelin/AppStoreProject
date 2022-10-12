@@ -16,6 +16,13 @@ final class ShopViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        overrideUserInterfaceStyle = .dark
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        
+    }
+    
     // MARK: - Private methods
     private func setupUI() {
         view.backgroundColor = .systemBackground

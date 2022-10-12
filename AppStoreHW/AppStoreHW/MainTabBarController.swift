@@ -47,11 +47,14 @@ final class MainTabBarController: UITabBarController {
     
     private func setupUI() {
         let navigationController = UINavigationController(rootViewController: searchViewController)
-        viewControllers = [shopViewController, clientViewController, navigationController, basketViewController]
+        let clientNavigationController = UINavigationController(rootViewController: clientViewController)
+        clientNavigationController.overrideUserInterfaceStyle = .light
+        viewControllers = [shopViewController, clientNavigationController, navigationController, basketViewController]
         shopViewController.tabBarItem = shopTabBarItem
         clientViewController.tabBarItem = clientTabBarItem
         searchViewController.tabBarItem = searchTabBarItem
         basketViewController.tabBarItem = basketTabBarItem
         tabBar.backgroundColor = .secondarySystemBackground
+        selectedViewController = clientNavigationController
     }
 }

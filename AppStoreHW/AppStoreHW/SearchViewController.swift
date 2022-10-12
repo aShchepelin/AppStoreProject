@@ -32,15 +32,6 @@ final class SearchViewController: UIViewController {
     }
     // MARK: - Visual Components
     
-    private let searchLabel: UILabel = {
-        let label = UILabel()
-        label.text = Constants.searchLabelText
-        label.textColor = .label
-        label.font = .boldSystemFont(ofSize: 30)
-        label.frame = CGRect(x: 20, y: 100, width: 90, height: 50)
-        return label
-    }()
-    
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = Constants.searchTextFieldPlaceholderText
@@ -251,18 +242,24 @@ final class SearchViewController: UIViewController {
     // MARK: - Private properties
     private var viewFrame = 13
     private var tag = 0
-    var product = [Product(name: "Чехол Incase Flat для MacBook Pro 16 дюймов",
+    
+    // MARK: - Public properties
+    var products = [Product(name: "Чехол Incase Flat для MacBook Pro 16 дюймов",
                           imageNames: ["caseBlack", "caseBlack2", "caseBlack3"],
-                          cost: "3 990.00 руб"),
+                          cost: "3 990.00 руб",
+                           link: "https://re-store.ru/catalog/INMB100649-BLK/"),
                    Product(name: "Кожаный чехол для MacBook Pro 16 дюймов, коричневый",
                            imageNames: ["caseBrown", "caseBrown2", "caseBrown3"],
-                           cost: "4 990.00 руб"),
+                           cost: "4 990.00 руб",
+                           link: "https://re-store.ru/catalog/PA15SASA5450/"),
                    Product(name: "Спортивный ремешок Black Unity",
                            imageNames: ["4", "clock2", "clock3"],
-                           cost: "1 200.00 руб"),
+                           cost: "1 200.00 руб",
+                           link: "https://re-store.ru/catalog/MJ4W3ZM-A/"),
                    Product(name: "Iphone 12 pro какого-то цвета",
                            imageNames: ["iphone", "iphone2", "iphone3"],
-                           cost: "89 900.00 руб") ]
+                           cost: "89 900.00 руб",
+                           link: "https://re-store.ru/catalog/MGED3RU-A/") ]
     
     // MARK: - Lifeсycle
     
@@ -271,6 +268,12 @@ final class SearchViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        overrideUserInterfaceStyle = .dark
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        
+    }
     // MARK: - Private methods
     
     private func setupUI() {
@@ -304,7 +307,7 @@ final class SearchViewController: UIViewController {
     }
     
     private func addView() {
-        for item in product {
+        for item in products {
             createProductView(image: item.imageNames.first ?? "", info: item.name, cost: item.cost, tag: tag)
             tag += 1
         }
@@ -364,7 +367,7 @@ final class SearchViewController: UIViewController {
     @objc private func handleTap(param: UIGestureRecognizer) {
         let productViewController = ProductViewController()
         guard let tag = param.view?.tag else { return }
-        productViewController.product = product[tag]
+        productViewController.product = products[tag]
         
         navigationController?.pushViewController(productViewController, animated: true)
     }
