@@ -25,6 +25,7 @@ final class ClientViewController: UIViewController {
         static let devices = "ваши устройства"
         static let showAll = "Показать все"
         static let title = "Для вас"
+        static let avatarKey = "Avatar"
         static let imageSizeForLargeState: CGFloat = 40
         static let imageRightMargin: CGFloat = 16
         static let imageBottomMarginForLargeState: CGFloat = 12
@@ -304,12 +305,12 @@ final class ClientViewController: UIViewController {
     
     private func saveToUserDefaults(image: Data) {
         let defaults = UserDefaults.standard
-        defaults.set(image, forKey: "")
+        defaults.set(image, forKey: Constants.avatarKey)
     }
     
     private func checkAvatar() -> UIImage? {
         let userDefaults = UserDefaults.standard
-        guard let dataImage = userDefaults.object(forKey: "") as? Data,
+        guard let dataImage = userDefaults.object(forKey: Constants.avatarKey) as? Data,
               let image = UIImage(data: dataImage) else {
             let image = UIImage(systemName: Images.clientImageName)?.resizeImage(to: CGSize(width: 30, height: 30))
             return image
