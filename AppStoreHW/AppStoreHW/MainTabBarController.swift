@@ -55,6 +55,5 @@ final class MainTabBarController: UITabBarController {
         searchViewController.tabBarItem = searchTabBarItem
         basketViewController.tabBarItem = basketTabBarItem
         tabBar.backgroundColor = .secondarySystemBackground
-        selectedViewController = clientNavigationController
     }
 }

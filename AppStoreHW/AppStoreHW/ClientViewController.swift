@@ -25,13 +25,13 @@ final class ClientViewController: UIViewController {
         static let devices = "ваши устройства"
         static let showAll = "Показать все"
         static let title = "Для вас"
-        static let ImageSizeForLargeState: CGFloat = 40
-        static let ImageRightMargin: CGFloat = 16
-        static let ImageBottomMarginForLargeState: CGFloat = 12
-        static let ImageBottomMarginForSmallState: CGFloat = 6
-        static let ImageSizeForSmallState: CGFloat = 32
-        static let NavBarHeightSmallState: CGFloat = 44
-        static let NavBarHeightLargeState: CGFloat = 96.5
+        static let imageSizeForLargeState: CGFloat = 40
+        static let imageRightMargin: CGFloat = 16
+        static let imageBottomMarginForLargeState: CGFloat = 12
+        static let imageBottomMarginForSmallState: CGFloat = 6
+        static let imageSizeForSmallState: CGFloat = 32
+        static let navBarHeightSmallState: CGFloat = 44
+        static let navBarHeightLargeState: CGFloat = 96.5
         static let grayCustomColorName = "lightGrayCustomColor"
     }
     
@@ -252,11 +252,11 @@ final class ClientViewController: UIViewController {
         avatarImageView.isUserInteractionEnabled = true
         avatarImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                action: #selector(
-                                                                 presentImagePickerController)))
+                                                                 presentImagePickerControllerAction)))
         avatarImageView.image = checkAvatar()
     }
     
-    @objc private func presentImagePickerController() {
+    @objc private func presentImagePickerControllerAction() {
         let imagePickerView = UIImagePickerController()
         imagePickerView.delegate = self
         imagePickerView.allowsEditing = true
@@ -287,29 +287,29 @@ final class ClientViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         title = Constants.title
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        guard let navigationBar = navigationController?.navigationBar else { return }
         navigationBar.addSubview(avatarImageView)
-        avatarImageView.layer.cornerRadius = Constants.ImageSizeForLargeState / 2
+        avatarImageView.layer.cornerRadius = Constants.imageSizeForLargeState / 2
         avatarImageView.clipsToBounds = true
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             avatarImageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor,
-                                              constant: -Constants.ImageRightMargin),
+                                              constant: -Constants.imageRightMargin),
             avatarImageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor,
-                                               constant: -Constants.ImageBottomMarginForLargeState),
-            avatarImageView.heightAnchor.constraint(equalToConstant: Constants.ImageSizeForLargeState),
+                                               constant: -Constants.imageBottomMarginForLargeState),
+            avatarImageView.heightAnchor.constraint(equalToConstant: Constants.imageSizeForLargeState),
             avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor)
         ])
     }
     
     private func saveToUserDefaults(image: Data) {
         let defaults = UserDefaults.standard
-        defaults.set(image, forKey: "Avatar")
+        defaults.set(image, forKey: "")
     }
     
     private func checkAvatar() -> UIImage? {
         let userDefaults = UserDefaults.standard
-        guard let dataImage = userDefaults.object(forKey: "Avatar") as? Data,
+        guard let dataImage = userDefaults.object(forKey: "") as? Data,
               let image = UIImage(data: dataImage) else {
             let image = UIImage(systemName: Images.clientImageName)?.resizeImage(to: CGSize(width: 30, height: 30))
             return image
@@ -319,26 +319,26 @@ final class ClientViewController: UIViewController {
     
     private func moveAndResizeImage(for height: CGFloat) {
         let coeff: CGFloat = {
-            let delta = height - Constants.NavBarHeightSmallState
-            let heightDifferenceBetweenStates = (Constants.NavBarHeightLargeState - Constants.NavBarHeightSmallState)
+            let delta = height - Constants.navBarHeightSmallState
+            let heightDifferenceBetweenStates = (Constants.navBarHeightLargeState - Constants.navBarHeightSmallState)
             return delta / heightDifferenceBetweenStates
         }()
         
-        let factor = Constants.ImageSizeForSmallState / Constants.ImageSizeForLargeState
+        let factor = Constants.imageSizeForSmallState / Constants.imageSizeForLargeState
         
         let scale: CGFloat = {
             let sizeAddendumFactor = coeff * (1.0 - factor)
             return min(1.0, sizeAddendumFactor + factor)
         }()
         
-        let sizeDiff = Constants.ImageSizeForLargeState * (1.0 - factor)
+        let sizeDiff = Constants.imageSizeForLargeState * (1.0 - factor)
         
         let yTranslation: CGFloat = {
           
-            let maxYTranslation = Constants.ImageBottomMarginForLargeState -
-            Constants.ImageBottomMarginForSmallState + sizeDiff
+            let maxYTranslation = Constants.imageBottomMarginForLargeState -
+            Constants.imageBottomMarginForSmallState + sizeDiff
             return max(0, min(maxYTranslation, (maxYTranslation -
-                                                coeff * (Constants.ImageBottomMarginForSmallState + sizeDiff))))
+                                                coeff * (Constants.imageBottomMarginForSmallState + sizeDiff))))
         }()
         
         let xTranslation = max(0, sizeDiff - coeff * sizeDiff)
@@ -366,7 +366,7 @@ extension ClientViewController: UIImagePickerControllerDelegate {
             avatarImageView.image = img
             guard let imageData = image.pngData() else { return }
             saveToUserDefaults(image: imageData)
-            self.dismiss(animated: true)
+            dismiss(animated: true)
     }
 }
 /// UINavigationControllerDelegate

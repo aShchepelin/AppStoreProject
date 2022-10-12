@@ -230,7 +230,7 @@ final class ProductViewController: UIViewController {
         view.addSubview(productScrollView)
     }
     
-    @objc private func presentRestoreWKViewController() {
+    @objc private func presentRestoreWKViewControllerAction() {
         let restoreWKViewController = RestoreWKViewController()
         restoreWKViewController.productURL = product?.link ?? ""
         restoreWKViewController.modalPresentationStyle = .formSheet
@@ -265,7 +265,7 @@ final class ProductViewController: UIViewController {
         result.isUserInteractionEnabled = true
         result.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                             action: #selector(
-                                                              presentRestoreWKViewController)))
+                                                              presentRestoreWKViewControllerAction)))
         return result
     }
     

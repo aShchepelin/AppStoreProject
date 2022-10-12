@@ -9,7 +9,13 @@ import UIKit
 import WebKit
 
 /// Экран веб страницы
-class RestoreWKViewController: UIViewController {
+final class RestoreWKViewController: UIViewController {
+    
+    // MARK: - Enum
+    private enum Constants {
+        static let pdfName = "priceList"
+        static let pdfFormat = "pdf"
+    }
     
     // MARK: - Visual components
     
@@ -82,8 +88,8 @@ class RestoreWKViewController: UIViewController {
     }
     
     @objc private func loadPdfAction() {
-        guard let url = Bundle.main.url(forResource: "priceList",
-                                        withExtension: "pdf") else { return }
+        guard let url = Bundle.main.url(forResource: Constants.pdfName,
+                                        withExtension: Constants.pdfFormat) else { return }
         let urlRequest = URLRequest(url: url)
         
         webView.load(urlRequest)
