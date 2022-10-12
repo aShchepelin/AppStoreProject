@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F25294828F4CB5400FBEE44 /* priceList.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6F25294728F4CB5400FBEE44 /* priceList.pdf */; };
+		6F25294A28F61EEA00FBEE44 /* UIImage+Exstension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F25294928F61EEA00FBEE44 /* UIImage+Exstension.swift */; };
 		6F28DC4B28EE35510003871A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F28DC4A28EE35510003871A /* AppDelegate.swift */; };
 		6F28DC4D28EE35510003871A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F28DC4C28EE35510003871A /* SceneDelegate.swift */; };
 		6F28DC5228EE35510003871A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F28DC5028EE35510003871A /* Main.storyboard */; };
@@ -20,11 +22,13 @@
 		6FA8AB2828EF30BA006EBB9F /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA8AB2728EF30BA006EBB9F /* ProductViewController.swift */; };
 		6FA8AB2A28EF486F006EBB9F /* UIView+Exstension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA8AB2928EF486F006EBB9F /* UIView+Exstension.swift */; };
 		6FA8AB2C28EF8237006EBB9F /* ImagesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA8AB2B28EF8237006EBB9F /* ImagesEnum.swift */; };
-		6FC1110F28F47CB1000C4929 /* Collection+Exstension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1110E28F47CB1000C4929 /* Collection+Exstension.swift */; };
 		6FC1111128F490C7000C4929 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1111028F490C7000C4929 /* Product.swift */; };
+		6FC1111328F4AC66000C4929 /* RestoreWKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC1111228F4AC66000C4929 /* RestoreWKViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F25294728F4CB5400FBEE44 /* priceList.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = priceList.pdf; sourceTree = "<group>"; };
+		6F25294928F61EEA00FBEE44 /* UIImage+Exstension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Exstension.swift"; sourceTree = "<group>"; };
 		6F28DC4728EE35510003871A /* AppStoreHW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreHW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F28DC4A28EE35510003871A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F28DC4C28EE35510003871A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,8 +44,8 @@
 		6FA8AB2728EF30BA006EBB9F /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		6FA8AB2928EF486F006EBB9F /* UIView+Exstension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Exstension.swift"; sourceTree = "<group>"; };
 		6FA8AB2B28EF8237006EBB9F /* ImagesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesEnum.swift; sourceTree = "<group>"; };
-		6FC1110E28F47CB1000C4929 /* Collection+Exstension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Exstension.swift"; sourceTree = "<group>"; };
 		6FC1111028F490C7000C4929 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		6FC1111228F4AC66000C4929 /* RestoreWKViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreWKViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +84,14 @@
 				6F28DC6128EEE3960003871A /* SearchViewController.swift */,
 				6F28DC6328EEE4720003871A /* ClientViewController.swift */,
 				6FA8AB2928EF486F006EBB9F /* UIView+Exstension.swift */,
-				6FC1110E28F47CB1000C4929 /* Collection+Exstension.swift */,
+				6F25294928F61EEA00FBEE44 /* UIImage+Exstension.swift */,
 				6FC1111028F490C7000C4929 /* Product.swift */,
 				6FA8AB2B28EF8237006EBB9F /* ImagesEnum.swift */,
 				6FA8AB2728EF30BA006EBB9F /* ProductViewController.swift */,
+				6FC1111228F4AC66000C4929 /* RestoreWKViewController.swift */,
 				6F695EEC28EEE53700AAF3C4 /* ShopViewController.swift */,
 				6F695EEE28EEE58900AAF3C4 /* BasketViewController.swift */,
+				6F25294728F4CB5400FBEE44 /* priceList.pdf */,
 				6F28DC5028EE35510003871A /* Main.storyboard */,
 				6F28DC5328EE35530003871A /* Assets.xcassets */,
 				6F28DC5528EE35530003871A /* LaunchScreen.storyboard */,
@@ -154,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F28DC5728EE35530003871A /* LaunchScreen.storyboard in Resources */,
+				6F25294828F4CB5400FBEE44 /* priceList.pdf in Resources */,
 				6F28DC5428EE35530003871A /* Assets.xcassets in Resources */,
 				6F28DC5228EE35510003871A /* Main.storyboard in Resources */,
 			);
@@ -192,12 +199,13 @@
 				6F28DC6028EEE2440003871A /* MainTabBarController.swift in Sources */,
 				6F28DC4B28EE35510003871A /* AppDelegate.swift in Sources */,
 				6F28DC4D28EE35510003871A /* SceneDelegate.swift in Sources */,
+				6F25294A28F61EEA00FBEE44 /* UIImage+Exstension.swift in Sources */,
 				6FC1111128F490C7000C4929 /* Product.swift in Sources */,
 				6F695EED28EEE53700AAF3C4 /* ShopViewController.swift in Sources */,
 				6FA8AB2828EF30BA006EBB9F /* ProductViewController.swift in Sources */,
+				6FC1111328F4AC66000C4929 /* RestoreWKViewController.swift in Sources */,
 				6F695EEF28EEE58900AAF3C4 /* BasketViewController.swift in Sources */,
 				6F28DC6428EEE4730003871A /* ClientViewController.swift in Sources */,
-				6FC1110F28F47CB1000C4929 /* Collection+Exstension.swift in Sources */,
 				6FA8AB2A28EF486F006EBB9F /* UIView+Exstension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

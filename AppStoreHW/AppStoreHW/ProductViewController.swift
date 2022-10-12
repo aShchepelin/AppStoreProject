@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 /// Экран с выбранным товаром
 final class ProductViewController: UIViewController {
@@ -142,6 +143,9 @@ final class ProductViewController: UIViewController {
         super.viewWillAppear(animated)
         customNavigationBar(largeType: false, color: .secondarySystemBackground)
         createBarButtonItems()
+        overrideUserInterfaceStyle = .dark
+        tabBarController?.overrideUserInterfaceStyle = .dark
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -226,6 +230,13 @@ final class ProductViewController: UIViewController {
         view.addSubview(productScrollView)
     }
     
+    @objc private func presentRestoreWKViewControllerAction() {
+        let restoreWKViewController = RestoreWKViewController()
+        restoreWKViewController.productURL = product?.link ?? ""
+        restoreWKViewController.modalPresentationStyle = .formSheet
+        present(restoreWKViewController, animated: true)
+    }
+    
     private func addNewImageView(imageName: String) {
         var imageViewRect = CGRect(x: 0, y: 0, width: view.bounds.width, height: 190)
         imageViewRect.origin.x = imageViewRect.size.width * CGFloat(productScrollView.subviews.count)
@@ -251,6 +262,10 @@ final class ProductViewController: UIViewController {
         let result = UIImageView(frame: paramFrame)
         result.contentMode = .scaleAspectFit
         result.image = UIImage(named: paramImage)
+        result.isUserInteractionEnabled = true
+        result.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                            action: #selector(
+                                                              presentRestoreWKViewControllerAction)))
         return result
     }
     
