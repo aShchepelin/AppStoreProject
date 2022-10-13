@@ -96,7 +96,7 @@ final class ProductViewController: UIViewController {
     
     private let checkMarkButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.checkmarkImageName), for: .normal)
+        button.setImage(UIImage(systemName: GeneralConstants.checkmarkImageName), for: .normal)
         button.frame = CGRect(x: 35, y: 542, width: 25, height: 25)
         button.tintColor = .green
         return button
@@ -122,7 +122,7 @@ final class ProductViewController: UIViewController {
     
     private let boxButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.shippingBoxImageName), for: .normal)
+        button.setImage(UIImage(systemName: GeneralConstants.shippingBoxImageName), for: .normal)
         button.tintColor = .gray
         button.frame = CGRect(x: 10, y: 680, width: 20, height: 20)
         return button
@@ -189,7 +189,7 @@ final class ProductViewController: UIViewController {
                                     target: self,
                                     action: .none)
         
-        let like = UIBarButtonItem(image: UIImage(systemName: Images.heartImageName),
+        let like = UIBarButtonItem(image: UIImage(systemName: GeneralConstants.heartImageName),
                                   style: .plain,
                                   target: .none,
                                   action: .none)

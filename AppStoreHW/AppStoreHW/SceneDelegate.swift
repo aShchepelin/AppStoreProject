@@ -17,6 +17,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: applicationScene)
         let tabBarViewController = MainTabBarController()
         window?.rootViewController = tabBarViewController
+//        window?.rootViewController = PageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
+        
     }
 }

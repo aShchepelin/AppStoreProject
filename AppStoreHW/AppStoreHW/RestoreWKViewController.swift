@@ -24,11 +24,11 @@ final class RestoreWKViewController: UIViewController {
    private let spacer = UIBarButtonItem(systemItem: .flexibleSpace)
    private let refreshButtonItem = UIBarButtonItem(systemItem: .refresh)
    private let loadPdfButtonItem = UIBarButtonItem(image: UIImage(
-    systemName: Images.docBadgePlusName),
+    systemName: GeneralConstants.docBadgePlusName),
                                             style: .done,
                                             target: nil,
                                             action: #selector(loadPdfAction))
-    private let shareButtonItem = UIBarButtonItem(image: UIImage(systemName: Images.shareImageName),
+    private let shareButtonItem = UIBarButtonItem(image: UIImage(systemName: GeneralConstants.shareImageName),
                                           style: .done,
                                           target: nil,
                                           action: #selector(presentShareSheetAction))

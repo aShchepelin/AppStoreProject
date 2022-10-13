@@ -110,7 +110,7 @@ final class ClientViewController: UIViewController {
     
     private let orderButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: Images.chevronImageName), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: GeneralConstants.chevronImageName), for: .normal)
         button.frame = CGRect(x: 330, y: 54, width: 15, height: 20)
         button.tintColor = .gray
         return button
@@ -134,7 +134,7 @@ final class ClientViewController: UIViewController {
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 10, y: 20, width: 70, height: 70)
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: Images.airPodsImageName)
+        imageView.image = UIImage(named: GeneralConstants.airPodsImageName)
         return imageView
     }()
     
@@ -148,7 +148,7 @@ final class ClientViewController: UIViewController {
     
     private let badgeButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: Images.budgeImageName), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: GeneralConstants.budgeImageName), for: .normal)
         button.frame = CGRect(x: 30, y: 400, width: 50, height: 50)
         button.tintColor = .systemRed
         return button
@@ -175,7 +175,7 @@ final class ClientViewController: UIViewController {
     
     private let newsButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: Images.chevronImageName), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: GeneralConstants.chevronImageName), for: .normal)
         button.frame = CGRect(x: 350, y: 440, width: 15, height: 20)
         button.tintColor = .gray
         return button
@@ -208,7 +208,7 @@ final class ClientViewController: UIViewController {
     
     // MARK: - Private properties
     private var orderProgressView = UIProgressView()
-    private let avatarImageView = UIImageView(image: UIImage(systemName: Images.clientImageName))
+    private let avatarImageView = UIImageView(image: UIImage(systemName: GeneralConstants.clientImageName))
     
     // MARK: - Lifeсycle
     override func viewDidLoad() {
@@ -312,7 +312,8 @@ final class ClientViewController: UIViewController {
         let userDefaults = UserDefaults.standard
         guard let dataImage = userDefaults.object(forKey: Constants.avatarKey) as? Data,
               let image = UIImage(data: dataImage) else {
-            let image = UIImage(systemName: Images.clientImageName)?.resizeImage(to: CGSize(width: 30, height: 30))
+            let image = UIImage(
+                systemName: GeneralConstants.clientImageName)?.resizeImage(to: CGSize(width: 30, height: 30))
             return image
         }
         return image
