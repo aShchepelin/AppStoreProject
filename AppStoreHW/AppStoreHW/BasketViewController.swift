@@ -14,10 +14,15 @@ final class BasketViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupViewWillAppear()
+    }
+    // MARK: - Private methods
+    
+    private func setupViewWillAppear() {
         overrideUserInterfaceStyle = .dark
         tabBarController?.overrideUserInterfaceStyle = .dark
     }
-    // MARK: - Private methods
+    
     private func setupUI() {
        view.backgroundColor = .systemBackground
     }

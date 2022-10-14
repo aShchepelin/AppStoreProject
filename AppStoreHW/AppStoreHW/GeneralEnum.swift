@@ -6,7 +6,7 @@
 //
 
 import Foundation
-    enum Images {
+    enum GeneralConstants {
         static let buyImageName = "laptopcomputer.and.iphone"
         static let clientImageName = "person.circle"
         static let glassImageName = "magnifyingglass"
@@ -20,4 +20,5 @@ import Foundation
         static let budgeImageName = "app.badge"
         static let docBadgePlusName = "doc.badge.plus"
         static let shareImageName = "square.and.arrow.up"
+        static let userDefaultsKey = "launch"
     }

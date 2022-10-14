@@ -144,7 +144,7 @@ final class SearchViewController: UIViewController {
     
     private let glassForAirPodsButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
+        button.setImage(UIImage(systemName: GeneralConstants.glassImageName), for: .normal)
         button.tintColor = .gray
         button.contentMode = .scaleAspectFit
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
@@ -162,7 +162,7 @@ final class SearchViewController: UIViewController {
     
     private let glassForAppleCareButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
+        button.setImage(UIImage(systemName: GeneralConstants.glassImageName), for: .normal)
         button.tintColor = .gray
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
         return button
@@ -179,7 +179,7 @@ final class SearchViewController: UIViewController {
     
     private let glassBeatsButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
+        button.setImage(UIImage(systemName: GeneralConstants.glassImageName), for: .normal)
         button.tintColor = .gray
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
         return button
@@ -196,7 +196,7 @@ final class SearchViewController: UIViewController {
     
     private let glassIPhoneButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: Images.glassImageName), for: .normal)
+        button.setImage(UIImage(systemName: GeneralConstants.glassImageName), for: .normal)
         button.tintColor = .gray
         button.frame = CGRect(x: 20, y: 25, width: 20, height: 20)
         return button
@@ -270,11 +270,15 @@ final class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        overrideUserInterfaceStyle = .dark
-        tabBarController?.overrideUserInterfaceStyle = .dark
+        setupViewWillAppear()
         
     }
     // MARK: - Private methods
+    
+    private func setupViewWillAppear() {
+        overrideUserInterfaceStyle = .light
+        tabBarController?.overrideUserInterfaceStyle = .light
+    }
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
