@@ -270,11 +270,15 @@ final class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        overrideUserInterfaceStyle = .dark
-        tabBarController?.overrideUserInterfaceStyle = .dark
+        setupViewWillAppear()
         
     }
     // MARK: - Private methods
+    
+    private func setupViewWillAppear() {
+        overrideUserInterfaceStyle = .light
+        tabBarController?.overrideUserInterfaceStyle = .light
+    }
     
     private func setupUI() {
         view.backgroundColor = .systemBackground

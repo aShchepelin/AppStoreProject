@@ -18,8 +18,7 @@ final class ShopViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        overrideUserInterfaceStyle = .dark
-        tabBarController?.overrideUserInterfaceStyle = .dark
+        setupViewWillApear()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,6 +27,11 @@ final class ShopViewController: UIViewController {
     }
     
     // MARK: - Private methods
+    private func setupViewWillApear() {
+        overrideUserInterfaceStyle = .dark
+        tabBarController?.overrideUserInterfaceStyle = .dark
+    }
+    
     private func setupUI() {
         view.backgroundColor = .systemBackground
     }

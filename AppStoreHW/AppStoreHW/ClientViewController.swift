@@ -218,11 +218,15 @@ final class ClientViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupViewWillAppear()
+    }
+    
+    // MARK: - Private methods
+    private func setupViewWillAppear() {
         overrideUserInterfaceStyle = .light
         tabBarController?.overrideUserInterfaceStyle = .light
     }
     
-    // MARK: - Private methods
     private func setupUI() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true

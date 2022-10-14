@@ -30,31 +30,28 @@ final class CyclePageViewController: UIPageViewController {
     }
     
     // MARK: - Visual elements
-    private lazy var skipButton: UIButton = {
+    private let skipButton: UIButton = {
         let button = UIButton()
         button.setTitle(Constants.skipButtonText, for: .normal)
         button.setTitleColor(.systemGray, for: .normal)
         button.frame = CGRect(x: 50, y: 780, width: 70, height: 20)
-        button.addTarget(self, action: #selector(skipAction(_:)), for: .primaryActionTriggered)
         return button
     }()
     
-    private lazy var nextButton: UIButton = {
+    private let nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(Constants.nextButtonText, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.frame = CGRect(x: 275, y: 780, width: 70, height: 20)
-        button.addTarget(self, action: #selector(nextAction(_:)), for: .primaryActionTriggered)
         return button
     }()
     
-    private lazy var getStartedButton: UIButton = {
+    private let getStartedButton: UIButton = {
         let button = UIButton()
         button.setTitle(Constants.getStartedButtonText, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.frame = CGRect(x: 0, y: 780, width: 150, height: 20)
         button.isHidden = true
-        button.addTarget(self, action: #selector(getStartedAction(_:)), for: .primaryActionTriggered)
         return button
     }()
     
@@ -82,6 +79,9 @@ final class CyclePageViewController: UIPageViewController {
     // MARK: - Private methods
     
     private func setupUI() {
+        nextButton.addTarget(self, action: #selector(nextAction(_:)), for: .primaryActionTriggered)
+        skipButton.addTarget(self, action: #selector(skipAction(_:)), for: .primaryActionTriggered)
+        getStartedButton.addTarget(self, action: #selector(getStartedAction(_:)), for: .primaryActionTriggered)
         skipButton.alpha = 1
         nextButton.alpha = 1
         pageControl.alpha = 1
@@ -239,8 +239,8 @@ extension CyclePageViewController: UIPageViewControllerDelegate, UIPageViewContr
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {
         
-        guard let viewControllers = pageViewController.viewControllers else { return }
-        guard let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
+        guard let viewController = pageViewController.viewControllers?.first,
+                let currentIndex = pages.firstIndex(of: viewController) else { return }
         pageControl.currentPage = currentIndex
     }
     

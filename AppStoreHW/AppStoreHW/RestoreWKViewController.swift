@@ -19,16 +19,16 @@ final class RestoreWKViewController: UIViewController {
     
     // MARK: - Visual components
     
-   private let backButtonItem = UIBarButtonItem(systemItem: .rewind)
-   private let forwardButtonItem = UIBarButtonItem(systemItem: .fastForward)
-   private let spacer = UIBarButtonItem(systemItem: .flexibleSpace)
-   private let refreshButtonItem = UIBarButtonItem(systemItem: .refresh)
-   private let loadPdfButtonItem = UIBarButtonItem(image: UIImage(
+   private let backBarButtonItem = UIBarButtonItem(systemItem: .rewind)
+   private let forwardBarButtonItem = UIBarButtonItem(systemItem: .fastForward)
+   private let spacerBarButtonItem = UIBarButtonItem(systemItem: .flexibleSpace)
+   private let refreshBarButtonItem = UIBarButtonItem(systemItem: .refresh)
+   private let loadPdfBarButtonItem = UIBarButtonItem(image: UIImage(
     systemName: GeneralConstants.docBadgePlusName),
                                             style: .done,
                                             target: nil,
                                             action: #selector(loadPdfAction))
-    private let shareButtonItem = UIBarButtonItem(image: UIImage(systemName: GeneralConstants.shareImageName),
+    private let shareBarButtonItem = UIBarButtonItem(image: UIImage(systemName: GeneralConstants.shareImageName),
                                           style: .done,
                                           target: nil,
                                           action: #selector(presentShareSheetAction))
@@ -74,17 +74,17 @@ final class RestoreWKViewController: UIViewController {
     
     private func toolBarItems() {
         toolBar.frame = CGRect(x: 0, y: 750, width: 390, height: 30)
-        toolBar.items = [backButtonItem, forwardButtonItem,
-                         spacer,
-                         refreshButtonItem,
-                         shareButtonItem,
-                         loadPdfButtonItem]
+        toolBar.items = [backBarButtonItem, forwardBarButtonItem,
+                         spacerBarButtonItem,
+                         refreshBarButtonItem,
+                         shareBarButtonItem,
+                         loadPdfBarButtonItem]
         toolBar.isTranslucent = false
         toolBar.backgroundColor = .systemBackground
         view.addSubview(toolBar)
-        backButtonItem.action = #selector(backAction)
-        forwardButtonItem.action = #selector(forwardAction)
-        refreshButtonItem.action = #selector(refreshAction)
+        backBarButtonItem.action = #selector(backAction)
+        forwardBarButtonItem.action = #selector(forwardAction)
+        refreshBarButtonItem.action = #selector(refreshAction)
     }
     
     @objc private func loadPdfAction() {

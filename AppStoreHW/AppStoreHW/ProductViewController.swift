@@ -141,19 +141,27 @@ final class ProductViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        customNavigationBar(largeType: false, color: .secondarySystemBackground)
-        createBarButtonItems()
-        overrideUserInterfaceStyle = .dark
-        tabBarController?.overrideUserInterfaceStyle = .dark
-        
+        setupViewWillAppear()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        customNavigationBar(largeType: true, color: .clear)
+        setupViewWillDisappear()
     }
     
     // MARK: - Private methods
+    
+    private func setupViewWillAppear() {
+        customNavigationBar(largeType: false, color: .secondarySystemBackground)
+        createBarButtonItems()
+        overrideUserInterfaceStyle = .dark
+        tabBarController?.overrideUserInterfaceStyle = .dark
+    }
+    
+    private func setupViewWillDisappear() {
+        customNavigationBar(largeType: true, color: .clear)
+    }
+    
     private func setupUI() {
         view.backgroundColor = .systemBackground
         productInfoLabel.text = product?.name

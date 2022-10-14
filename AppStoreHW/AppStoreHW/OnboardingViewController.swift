@@ -62,19 +62,27 @@ final class OnboardingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       setupViewWillAppear()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        setupViewDidDisappear()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupViewWillAppear() {
         UILabel.animate(withDuration: 2) {
             self.titleLabel.alpha = 1
             self.subtitleLabel.alpha = 1
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    private func setupViewDidDisappear() {
         titleLabel.alpha = 0
         subtitleLabel.alpha = 0
     }
-    
-    // MARK: - Private methods
     
     private func setupUI() {
         titleLabel.center.x = view.center.x
